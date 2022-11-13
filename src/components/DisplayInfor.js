@@ -3,9 +3,30 @@ import "./DisplayInfor.scss";
 import logo from "./../logo.svg";
 
 class DisplayInfor extends React.Component {
-  state = {
-    showListUser: true,
-  };
+  constructor(props) {
+    console.log(">>> call contructor: 1");
+    super(props);
+    this.state = {
+      showListUser: true,
+    };
+  }
+
+  componentDidMount() {
+    console.log(">>> call me component did mount");
+    setTimeout(() => {
+      document.title = "Nhon Nam Kingdom";
+    }, 3000);
+  }
+
+  componentDidUpdate(prepProps, prevState, snapshot) {
+    console.log(">>> call me component did update", this.props, prepProps);
+    if (this.props.listUsers !== prepProps.listUsers) {
+      if (this.props.listUsers.length === 5) {
+        alert("You got 5 users");
+      }
+    }
+  }
+
   handleShowHide = () => {
     this.setState({
       showListUser: !this.state.showListUser,
@@ -13,9 +34,10 @@ class DisplayInfor extends React.Component {
   };
 
   render() {
+    console.log(">>> call me render");
     //destructuring array/object
     const { listUsers } = this.props;
-    console.log(listUsers);
+    // console.log(listUsers);
     return (
       <div className="display-infor-container">
         {/* <img src={logo} /> */}
