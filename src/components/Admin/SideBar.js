@@ -8,6 +8,10 @@ import {
   FaRegLaughWink,
   FaHeart,
 } from "react-icons/fa";
+
+import { DiReact } from "react-icons/di";
+import { MdDashboard } from "react-icons/md";
+
 import sidebarBg from "../../assets/bg2.jpg";
 
 const SideBar = (props) => {
@@ -33,25 +37,27 @@ const SideBar = (props) => {
             whiteSpace: "nowrap",
           }}
         >
+          <DiReact size={"3em"} color={"00bfff"} />
           Nhon Nam
         </div>
         <Menu iconshape="circle">
           <MenuItem
             icon={<FaTachometerAlt />}
-            suffix={<span className="badge red">New</span>}
+            // suffix={<span className="badge red">New</span>}
           >
-            dashboard
+            Dashboard
           </MenuItem>
-          <MenuItem icon={<FaGem />}> components </MenuItem>
+          {/* <MenuItem icon={<FaGem />}> components </MenuItem> */}
         </Menu>
         <Menu iconshape="circle">
           <SubMenu
-            suffix={<span className="badge yellow">3</span>}
-            icon={<FaRegLaughWink />}
+            // suffix={<span className="badge yellow">3</span>}
+            label="Features"
+            icon={<FaGem />}
           >
-            <MenuItem> 1</MenuItem>
-            <MenuItem> 2</MenuItem>
-            <MenuItem> 3</MenuItem>
+            <MenuItem>Quản lý Users</MenuItem>
+            <MenuItem>Quản lý Bài Quiz</MenuItem>
+            <MenuItem>Quản lý Câu Hỏi</MenuItem>
           </SubMenu>
         </Menu>
       </Sidebar>
