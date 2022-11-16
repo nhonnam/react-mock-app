@@ -62,7 +62,15 @@ body {
       .title-3 {
         button {
           border-radius: 5px;
+          padding: 0 15px;
+          background: #303030;
+          color: white;
           height: 40px;
+          border: none;
+
+          &:hover{
+            background: black;
+          }
         }
       }
     }

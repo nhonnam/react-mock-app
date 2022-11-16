@@ -11,8 +11,8 @@ import {
 
 import { DiReact } from "react-icons/di";
 import { MdDashboard } from "react-icons/md";
-
 import sidebarBg from "../../assets/bg2.jpg";
+import { BrowserRouter, Link } from "react-router-dom";
 
 const SideBar = (props) => {
   const { image, collapsed, toggled, handleToggleSidebar } = props;
@@ -42,6 +42,7 @@ const SideBar = (props) => {
         </div>
         <Menu iconshape="circle">
           <MenuItem
+            routerLink={<Link to="/admins" />}
             icon={<FaTachometerAlt />}
             // suffix={<span className="badge red">New</span>}
           >
@@ -55,8 +56,12 @@ const SideBar = (props) => {
             label="Features"
             icon={<FaGem />}
           >
-            <MenuItem>Quản lý Users</MenuItem>
-            <MenuItem>Quản lý Bài Quiz</MenuItem>
+            <MenuItem routerLink={<Link to="/admins/manage-users" />}>
+              Quản lý Users
+            </MenuItem>
+            <MenuItem routerLink={<Link to="/admins/manage-users" />}>
+              Quản lý Bài Quiz
+            </MenuItem>
             <MenuItem>Quản lý Câu Hỏi</MenuItem>
           </SubMenu>
         </Menu>
