@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import { postCreateNewUser } from "../../../services/apiService";
 
 const ModalCreateUser = (props) => {
-  const { show, setShow } = props;
+  const { show, setShow, fetchListUsers } = props;
   const handleClose = () => {
     setShow(false);
     setEmail("");
@@ -58,6 +58,7 @@ const ModalCreateUser = (props) => {
     if (data) {
       toast.success("Create user successfully");
       handleClose();
+      await props.fetchListUsers();
     } else {
       toast.error("Create user failed");
     }
@@ -137,7 +138,7 @@ const ModalCreateUser = (props) => {
             </div>
             <div className="col-md-12 img-preview">
               {previewImage ? (
-                <img src={previewImage} />
+                <img src={previewImage} alt="Preview image" />
               ) : (
                 <span>Preview Image</span>
               )}
