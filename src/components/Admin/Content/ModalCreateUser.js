@@ -2,12 +2,20 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { FcPlus } from "react-icons/fc";
+import { toast } from "react-toastify";
+import { postCreateNewUser } from "../../../services/apiService";
 
-const ModalCreateUser = () => {
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+const ModalCreateUser = (props) => {
+  const { show, setShow } = props;
+  const handleClose = () => {
+    setShow(false);
+    setEmail("");
+    setPassword("");
+    setUsername("");
+    setRole("USER");
+    setEmail("");
+    setPreviewImage("");
+  };
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -25,12 +33,46 @@ const ModalCreateUser = () => {
     }
   };
 
+  const validateEmail = (email) => {
+    return String(email)
+      .toLowerCase()
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      );
+  };
+
+  const handleSubmitCreateUser = async () => {
+    const isValidEmail = validateEmail(email);
+    if (!isValidEmail) {
+      toast.error("Invalid email.");
+      return;
+    }
+
+    if (!password) {
+      toast.error("Invalid password.");
+      return;
+    }
+
+    let data = await postCreateNewUser(email, password, username, role, image);
+
+    if (data) {
+      toast.success("Create user successfully");
+      handleClose();
+    } else {
+      toast.error("Create user failed");
+    }
+
+    // if (data && data.EC === 0) {
+    //   toast.success(data.EM);
+    //   handleClose();
+    // }
+    // if (data && data.EC !== 0) {
+    //   toast.error(data.EM);
+    // }
+  };
+
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        Launch demo modal
-      </Button>
-
       <Modal
         show={show}
         onHide={handleClose}
@@ -106,7 +148,7 @@ const ModalCreateUser = () => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="primary" onClick={() => handleSubmitCreateUser()}>
             Save
           </Button>
         </Modal.Footer>

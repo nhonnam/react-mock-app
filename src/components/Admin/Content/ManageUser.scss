@@ -1,6 +1,20 @@
 .manage-users-container {
+    padding: 10px;
+
     .users-content {
-        
+        .btn-add-new {
+            margin: 15px 0;
+            button {
+                border: none;
+                border-radius: 3px;
+            }
+            
+        }
+    }
+
+    .title {
+        font-weight: 600;
+        font-size: 20px;
     }
 }
 
