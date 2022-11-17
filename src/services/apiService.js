@@ -10,4 +10,8 @@ const postCreateNewUser = (email, password, username, role, image) => {
   return axios.post("react-mock-app/participants", data);
 };
 
-export { postCreateNewUser };
+const getAllUsers = () => {
+  return axios.get("react-mock-app/participants");
+};
+
+export { postCreateNewUser, getAllUsers };
