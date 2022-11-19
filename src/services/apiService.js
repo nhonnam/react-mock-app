@@ -28,4 +28,14 @@ const deleteUser = (userId) => {
   return axios.delete(`react-mock-app/participants/${userId}`);
 };
 
-export { postCreateNewUser, getAllUsers, putUpdateUser, deleteUser };
+const getAllUsersWithPaginate = (page, limit) => {
+  return axios.get(`react-mock-app/participants?page=${page}&limit=${limit}`);
+};
+
+export {
+  postCreateNewUser,
+  getAllUsers,
+  putUpdateUser,
+  deleteUser,
+  getAllUsersWithPaginate,
+};
