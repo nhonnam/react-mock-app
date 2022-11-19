@@ -22,4 +22,10 @@ const putUpdateUser = (id, username, role, image) => {
   return axios.put(`react-mock-app/participants/${id}`, data);
 };
 
-export { postCreateNewUser, getAllUsers, putUpdateUser };
+const deleteUser = (userId) => {
+  // return axios.delete("react-mock-app/participants/", { id: userId });
+  // return axios.delete("react-mock-app/participants", { data: { id: userId } });
+  return axios.delete(`react-mock-app/participants/${userId}`);
+};
+
+export { postCreateNewUser, getAllUsers, putUpdateUser, deleteUser };
