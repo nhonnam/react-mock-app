@@ -53,7 +53,7 @@ const ModalUpdateUser = (props) => {
       );
   };
 
-  const handleSubmitCreateUser = async () => {
+  const handleSubmitUpdateUser = async () => {
     const isValidEmail = validateEmail(email);
     if (!isValidEmail) {
       toast.error("Invalid email.");
@@ -65,7 +65,9 @@ const ModalUpdateUser = (props) => {
     if (data) {
       toast.success("Update user successfully");
       handleClose();
-      await props.fetchListUsers();
+      // await props.fetchListUsers();
+      // props.setCurrentPage(1);
+      await props.fetchListUsersWithPaginate(props.currentPage);
     } else {
       toast.error("Create user failed");
     }
@@ -158,7 +160,7 @@ const ModalUpdateUser = (props) => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={() => handleSubmitCreateUser()}>
+          <Button variant="primary" onClick={() => handleSubmitUpdateUser()}>
             Save
           </Button>
         </Modal.Footer>
