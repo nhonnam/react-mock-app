@@ -32,10 +32,15 @@ const getAllUsersWithPaginate = (page, limit) => {
   return axios.get(`react-mock-app/participants?page=${page}&limit=${limit}`);
 };
 
+const postLogin = (email, password) => {
+  return axios.post("https://reqres.in/api/login", { email, password });
+};
+
 export {
   postCreateNewUser,
   getAllUsers,
   putUpdateUser,
   deleteUser,
   getAllUsersWithPaginate,
+  postLogin,
 };
