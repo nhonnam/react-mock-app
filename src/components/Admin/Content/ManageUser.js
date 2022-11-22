@@ -24,6 +24,8 @@ const ManageUser = (props) => {
 
   const [dataUpdate, setDataUpdate] = useState({});
   const [listUsers, setListUsers] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
   const fetchListUsers = async () => {
     let res = await getAllUsers();
     // if (res.EC === 0) {
@@ -33,6 +35,7 @@ const ManageUser = (props) => {
   };
 
   const fetchListUsersWithPaginate = async (page) => {
+    setIsLoading(true);
     let res = await getAllUsersWithPaginate(page, LIMIT_USER);
     // if (res.EC === 0) {
     //     setListUsers(res.DT.users)
@@ -41,8 +44,10 @@ const ManageUser = (props) => {
     if (res) {
       setListUsers(res);
       let totalUsers = await getAllUsers();
+      setIsLoading(false);
       setPageCount(Math.ceil(totalUsers.length / LIMIT_USER));
     }
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -88,6 +93,7 @@ const ManageUser = (props) => {
             handleClickBtnUpdate={handleClickBtnUpdate}
             handleClickBtnDelete={handleClickBtnDelete}
           /> */}
+
           <TableUserPaginate
             listUsers={listUsers}
             handleClickBtnView={handleClickBtnView}
@@ -97,6 +103,7 @@ const ManageUser = (props) => {
             pageCount={pageCount}
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
+            isLoading={isLoading}
           />
         </div>
         <ModalViewUser

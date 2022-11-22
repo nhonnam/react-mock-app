@@ -1,5 +1,6 @@
 import ReactPaginate from "react-paginate";
 import { useState, useEffect } from "react";
+import { FaSpinner } from "react-icons/fa";
 
 const TableUserPaginate = (props) => {
   const { listUsers, pageCount } = props;
@@ -12,6 +13,7 @@ const TableUserPaginate = (props) => {
 
   return (
     <>
+      {props.isLoading === true && <FaSpinner className="loader-icon" />}
       <table className="table table-hover table-bordered">
         <thead>
           <tr>
